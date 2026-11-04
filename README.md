@@ -1,4 +1,6 @@
-☕ **Cafe Database System**
+# Cafe Database System
+
+**📌Overview**
 
 A Python-based MySQL database solution designed to automate schema creation, import relational data from CSV files, execute relational analytical queries, and generate interactive visual dashboards using Plotly
 
