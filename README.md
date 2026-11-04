@@ -1,34 +1,43 @@
 # Cafe Database System
 
-**📌Overview**
+## 📌 Project Overview
 
-A Python-based MySQL database solution designed to automate schema creation, import relational data from CSV files, execute relational analytical queries, and generate interactive visual dashboards using Plotly
+This project provides an automated backend data pipeline for a dining and cafe setup. It handles database creation, foreign key relation building, CSV data ingestion, and business intelligence reporting with interactive Plotly visualizations.
 
-🛠️ **Tech Stack**
+### Key Highlights
+* **Automated Data Pipeline:** Programmatically creates database structures, drops old instances to avoid data duplication, and sequentially imports structured CSV data.
+* **Relational Schema Design:** Features 7 interconnected tables with primary and foreign key constraints enforcing table-level and category-level relationships (`Item`, `Food`, `Beverage`, `Orders`, `OrderItem`, `Staff`, `DiningTable`).
+* **Interactive Business Intelligence:** Integrates SQL query outputs directly with Plotly to output interactive visual charts for revenue tracking, staffing workloads, and inventory composition.
 
-Language: Python
+---
 
-Database: MySQL
+## 🗄️ Database Architecture & Entity Relationships
 
-Libraries & Packages:
-  - mysql-connector-python (MySQL Database Connection)
-  - plotly (Data Visualization)
-  - csv (Built-in data parsing)
+The relational schema organizes cafe transactions, menu taxonomies, staff assignments, and seating capacity:
 
- 📊 **Features**
- 
-Auto Schema Generation: Drops existing instances of CafeDB to prevent duplicate entries, recreates the database, and constructs foreign-key constrained tables (DiningTable, Staff, Item, Food, Beverage, Orders, OrderItem).
+* **Core Entities:**
+  * `DiningTable`: Table capacity records.
+  * `Staff`: Employee profiles and positions.
+  * `Item`: General menu items and baseline pricing.
+  * `Food` & `Beverage`: Categorical child tables inheriting from `Item` via Foreign Keys (tracking properties like `IsVegetarian` and `IsCaffeine`).
+  * `Orders` & `OrderItem`: Order transaction headers and itemized line details.
 
-Relational Data Import: Parses and imports CSV data files into their corresponding SQL tables in sequence.
+---
 
-Interactive Data Visualization:
+## ⚙️ Schema Features & Constraints
 
-Daily Order Counts: October 2025 daily transaction frequency (Bar Chart).
+* **Primary & Foreign Key Integrity:** Foreign keys tie transactions directly to staff, tables, and menu items with `ON DELETE RESTRICT` safeguards on core dining assets.
+* **Specialized Categorization:** Sub-category tables (`Food`, `Beverage`) use binary flags (`BOOLEAN`) to model item attributes clean of sparse columns in the parent table.
+* **Transactional Auditing:** Order headers maintain precise `DATE`, `TIME`, and calculated `Subtotal` values for financial reporting.
 
-Daily Revenue Trends: October 2025 daily sales performance in RM (Line Chart).
+---
 
-Staff Workload Distribution: Total orders handled per staff member (Bar Chart).
+## 💡 Key Analytical Queries & Visualizations Included
 
-Menu Composition Analysis: Food vs. Beverage menu share (Pie Chart).
+The Python script executes embedded SQL queries and plots real-time analytical dashboards:
 
-Dietary Option Split: Vegetarian vs. Non-Vegetarian food item ratio (Pie Chart).
+1. **Daily Order Frequency (Bar Chart):** Aggregates daily order counts for October 2025.
+2. **Daily Sales Trends (Line Chart):** Computes total daily revenue in MYR (RM) across October 2025.
+3. **Staff Workload Distribution (Bar Chart):** Tracks and ranks total order volume handled per staff member.
+4. **Menu Composition (Pie Chart):** Compares total food inventory offerings against beverage items using `UNION` aggregations.
+5. **Dietary Split (Pie Chart):** Analyzes the ratio of vegetarian vs. non-vegetarian menu items.
