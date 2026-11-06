@@ -37,7 +37,7 @@ The relational schema organizes cafe transactions, menu taxonomies, staff assign
 The Python script executes embedded SQL queries and plots real-time analytical dashboards:
 
 1. **Daily Order Frequency (Bar Chart):** Aggregates daily order counts for October 2025.
-2. **Daily Sales Trends (Line Chart):** Computes total daily revenue in MYR (RM) across October 2025.
+2. **Daily Sales Trends (Line Chart):** Computes total daily revenue across October 2025.
 3. **Staff Workload Distribution (Bar Chart):** Tracks and ranks total order volume handled per staff member.
 4. **Menu Composition (Pie Chart):** Compares total food inventory offerings against beverage items using `UNION` aggregations.
 5. **Dietary Split (Pie Chart):** Analyzes the ratio of vegetarian vs. non-vegetarian menu items.
